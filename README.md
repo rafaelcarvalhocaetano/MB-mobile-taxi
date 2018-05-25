@@ -1,2 +1,6 @@
-# MB-mobile-taxi
-Aplicativo clone do uber, 99 etc.
+# uBER
+
+- Firebase Autentication
+- Firebase Database
+- Support Disign
+- Material Design
