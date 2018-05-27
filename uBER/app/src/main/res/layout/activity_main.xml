@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.br.uber.MainActivity"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="U B E R"
+            android:textSize="36sp"
+            android:textAlignment="center"
+            android:textColor="@color/texto_branco"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="pattern"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textColor="@color/texto_branco"/>
+
+
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/texto_ride"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Olhando para o futuro"
+        android:textSize="12sp"
+        android:textColor="@color/texto_branco"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/texto_ride"
+        android:layout_margin="16dp">
+        
+        <Button
+            android:id="@+id/btnSingIn"
+            android:layout_width="0dp"
+            android:background="@drawable/btn_singin"
+            android:textColor="@color/texto_branco"
+            android:layout_height="wrap_content"
+            android:text="Logar"
+            android:layout_weight="1"
+            android:layout_marginRight="6dp"
+            tools:ignore="Suspicious0dp" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="0dp"
+            android:background="@drawable/btn_register"
+            android:textColor="@color/btn_register"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar"
+            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            tools:ignore="Suspicious0dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
