@@ -58,7 +58,7 @@
         android:layout_margin="16dp">
         
         <Button
-            android:id="@+id/btnSingIn"
+            android:id="@+id/btn_SingUp"
             android:layout_width="0dp"
             android:background="@drawable/btn_singin"
             android:textColor="@color/texto_branco"
@@ -69,7 +69,7 @@
             tools:ignore="Suspicious0dp" />
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btn_Register"
             android:layout_width="0dp"
             android:background="@drawable/btn_register"
             android:textColor="@color/btn_register"
