@@ -23,6 +23,9 @@ allprojects {
         maven{
             url 'https://mavem.google.com'
         }
+        maven{
+            url 'https://dl.bintray.com/glomadrian/maven'
+        }
     }
 }
 
