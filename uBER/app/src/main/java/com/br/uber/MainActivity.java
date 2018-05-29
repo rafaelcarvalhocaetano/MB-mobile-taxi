@@ -29,13 +29,11 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private Button btnSingIn, btnRegister;
-
+    private Button btnSingIn;
+    private Button btnRegister;
     private FirebaseAuth auth;
     private FirebaseDatabase db;
     private DatabaseReference users;
-
     private RelativeLayout rootLayout;
 
 
@@ -50,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                                        .setDefaultFontPath("fonts/arkhip_font.ttf")
-                                        .setFontAttrId(R.attr.fontPath).build()    );
+                .setDefaultFontPath("fonts/arkhip_font.ttf")
+                .setFontAttrId(R.attr.fontPath).build());
 
         //auth
         auth = FirebaseAuth.getInstance();
@@ -59,12 +57,10 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
 
-
         btnSingIn = (Button) findViewById(R.id.btn_SingUp);
         btnRegister = (Button) findViewById(R.id.btn_Register);
         rootLayout = (RelativeLayout) findViewById(R.id.root_layout);
-
-
+        
         //navigation
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void showRegisterDialog(){
+    public void showRegisterDialog() {
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setTitle("REGISTRAR");
         adb.setMessage("Por favor insira seu email para cadastrar");
@@ -100,19 +96,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                if(TextUtils.isEmpty(edtEmail.getText().toString() )){
+                if (TextUtils.isEmpty(edtEmail.getText().toString())) {
                     Snackbar.make(rootLayout, "Por favor entre com e-mail", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if(TextUtils.isEmpty(edtPhone.getText().toString() )){
+                if (TextUtils.isEmpty(edtPhone.getText().toString())) {
                     Snackbar.make(rootLayout, "Por favor entre com telefone", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if(TextUtils.isEmpty(edtPassword.getText().toString() )){
+                if (TextUtils.isEmpty(edtPassword.getText().toString())) {
                     Snackbar.make(rootLayout, "Por favor entre com a senha", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if(edtPassword.getText().toString().length() < 6 ){
+                if (edtPassword.getText().toString().length() < 6) {
                     Snackbar.make(rootLayout, "Verificar o tamanho da senha", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
@@ -143,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                Snackbar.make(rootLayout, "Falha ao cadastrar"+e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                                                Snackbar.make(rootLayout, "Falha ao cadastrar" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
                                                 return;
                                             }
                                         });
@@ -152,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Snackbar.make(rootLayout, "Falha ao cadastrar"+e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(rootLayout, "Falha ao cadastrar" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
                                 return;
                             }
                         });
@@ -168,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         adb.show();
     }
 
-    public void showLoginDialog(){
+    public void showLoginDialog() {
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setTitle("SAIR");
         adb.setMessage("Por favor insira seu email para sair");
@@ -209,24 +205,24 @@ public class MainActivity extends AppCompatActivity {
 
                 //fazendo o login
                 auth.signInWithEmailAndPassword(edtEmail.getText().toString(), edtPassword.getText().toString())
-                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            waitingDialog.dismiss();
-                            startActivity(new Intent(MainActivity.this, Welcome.class));
-                            finish();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            waitingDialog.dismiss();
-                            Snackbar.make(rootLayout, "Falha "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                waitingDialog.dismiss();
+                                startActivity(new Intent(MainActivity.this, Welcome.class));
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                waitingDialog.dismiss();
+                                Snackbar.make(rootLayout, "Falha " + e.getMessage(), Snackbar.LENGTH_SHORT).show();
 
-                            //ativando o btn
-                            btnSingIn.setEnabled(true);
-                        }
-                    });
+                                //ativando o btn
+                                btnSingIn.setEnabled(true);
+                            }
+                        });
             }
         });
 
