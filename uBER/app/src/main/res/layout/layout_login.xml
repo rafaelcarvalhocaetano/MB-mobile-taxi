@@ -52,44 +52,6 @@
 
             />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/edt_nome"
-            android:hint="Nome"
-            android:inputType="text"
-            android:text=""
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="20sp"
-
-            app:met_singleLineEllipsis="true"
-            app:met_baseColor="@color/colorPrimary"
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
-
-            />
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/edt_phone"
-            android:hint="Telefone"
-            android:inputType="phone"
-            android:text=""
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="20sp"
-
-            app:met_singleLineEllipsis="true"
-            app:met_baseColor="@color/colorPrimary"
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
-
-            />
-
     </LinearLayout>
 
 

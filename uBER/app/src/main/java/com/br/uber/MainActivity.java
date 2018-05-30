@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
 
-        btnSingIn = (Button) findViewById(R.id.btn_SingUp);
+        btnSingIn = (Button) findViewById(R.id.btn_SingIN);
         btnRegister = (Button) findViewById(R.id.btn_Register);
         rootLayout = (RelativeLayout) findViewById(R.id.root_layout);
-        
+
         //navigation
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,27 +165,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showLoginDialog() {
+
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
-        adb.setTitle("SAIR");
-        adb.setMessage("Por favor insira seu email para sair");
+        adb.setTitle("SIGN IN");
+        adb.setMessage("Entre com email para entrar");
 
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        View login_layou = inflater.inflate(R.layout.layout_login, null);
+        View login_layout = inflater.inflate(R.layout.layout_login, null);
 
-        final MaterialEditText edtEmail = login_layou.findViewById(R.id.edt_email);
-        final MaterialEditText edtPassword = login_layou.findViewById(R.id.edt_password);
+        final MaterialEditText edtEmail = login_layout.findViewById(R.id.edt_email);
+        final MaterialEditText edtPassword = login_layout.findViewById(R.id.edt_password);
 
-        adb.setView(login_layou);
 
-        adb.setPositiveButton("SAIR", new DialogInterface.OnClickListener() {
+        adb.setView(login_layout);
+
+        adb.setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-
-                //
-                btnSingIn.setEnabled(false);
-
                 if (TextUtils.isEmpty(edtEmail.getText().toString())) {
                     Snackbar.make(rootLayout, "Por favor entre com e-mail", Snackbar.LENGTH_SHORT).show();
                     return;
@@ -200,15 +198,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                final SpotsDialog waitingDialog = new SpotsDialog(MainActivity.this);
-                waitingDialog.show();
-
-                //fazendo o login
+                //logando
                 auth.signInWithEmailAndPassword(edtEmail.getText().toString(), edtPassword.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                waitingDialog.dismiss();
                                 startActivity(new Intent(MainActivity.this, Welcome.class));
                                 finish();
                             }
@@ -216,25 +210,24 @@ public class MainActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                waitingDialog.dismiss();
-                                Snackbar.make(rootLayout, "Falha " + e.getMessage(), Snackbar.LENGTH_SHORT).show();
-
-                                //ativando o btn
-                                btnSingIn.setEnabled(true);
+                                Snackbar.make(rootLayout, "Falha "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
                             }
                         });
             }
         });
-
         adb.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
+
+        adb.show();
+
+
     }
 
-    //parei no tempo 11:22 video 2
+
 
 
 }
